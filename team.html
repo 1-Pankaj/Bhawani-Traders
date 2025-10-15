@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Team | Bhawani Traders</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Meet the Bhawani Traders team behind Rajasthan’s favorite store — leadership, operations, and artisan relations."/>
+  <link rel="canonical" href="https://example.com/team.html"/>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Our Team | Bhawani Traders"/>
+  <meta property="og:description" content="The people powering Bhawani Traders — since 1985."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1600&auto=format&fit=crop"/>
+  <meta property="og:url" content="https://example.com/team.html"/>
+
+  <!-- Fonts, Icons, Bootstrap -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+
+  <style>
+    :root{
+      --primary-color:#1a237e;
+      --secondary-color:#FFD700;
+      --accent-color:#B71C1C;
+      --light-color:#FFF8E1;
+      --dark-color:#3E2723;
+      --text-color:#333;
+      --text-light:#757575;
+    }
+    body{font-family:'Poppins',sans-serif;color:var(--text-color);background:var(--light-color);line-height:1.6;overflow-x:hidden;}
+    h1,h2,h3,h4,h5,h6{font-family:'Playfair Display',serif;font-weight:700;color:var(--dark-color);}
+    .display-font{font-family:'Dancing Script',cursive;}
+
+    /* Header */
+    .header{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.1);position:sticky;top:0;z-index:1000;}
+    .navbar-brand{font-family:'Dancing Script',cursive;font-size:2rem;color:var(--primary-color)!important;}
+    .nav-link{font-weight:500;color:var(--dark-color)!important;position:relative;margin:0 10px;}
+    .nav-link:hover{color:var(--accent-color)!important;}
+    .nav-link::after{content:"";position:absolute;width:0;height:2px;bottom:0;left:0;background:var(--accent-color);transition:width .3s ease;}
+    .nav-link:hover::after{width:100%;}
+    .search-box{border-radius:20px;border:1px solid #ddd;padding:5px 20px;width:100%;}
+    .cart-icon{position:relative;}
+    .cart-count{position:absolute;top:-10px;right:-10px;background:var(--accent-color);color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:12px;}
+
+    /* Loader */
+    .page-loader{position:fixed;inset:0;background:var(--light-color);z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity .5s,visibility .5s;}
+    .page-loader.hidden{opacity:0;visibility:hidden;}
+    .loader{width:80px;height:80px;border:8px solid rgba(26,35,126,.2);border-radius:50%;border-top:8px solid var(--primary-color);animation:spin 1s linear infinite;}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* Hero */
+    .hero{position:relative;min-height:40vh;display:flex;align-items:center;justify-content:center;margin-top:90px;
+      background:linear-gradient(rgba(26,35,126,.55),rgba(26,35,126,.55)),
+      url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;}
+    .hero h1{color:#fff;font-size:2.6rem;}
+    .hero p{color:#fff;opacity:.95;}
+
+    /* Breadcrumb */
+    .breadcrumb-wrap{background:#fff;border-bottom:1px solid rgba(0,0,0,.06);}
+    .breadcrumb{background:transparent;margin:0;padding:.75rem 0;}
+    .breadcrumb .breadcrumb-item a{color:var(--primary-color);}
+    .breadcrumb .breadcrumb-item.active{color:var(--text-light);}
+
+    /* Sections */
+    .section{padding:60px 0;}
+    .section-title{text-align:center;margin-bottom:24px;position:relative;}
+    .section-title h2{font-size:2rem;margin-bottom:8px;color:var(--primary-color);}
+    .section-title::after{content:"";position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);width:100px;height:3px;background:var(--accent-color);}
+
+    /* Team cards */
+    .team-card{background:#fff;border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,.08);overflow:hidden;transition:transform .25s ease, box-shadow .25s ease;height:100%;}
+    .team-card:hover{transform:translateY(-6px);box-shadow:0 16px 34px rgba(0,0,0,.12);}
+    .team-photo{position:relative;height:260px;overflow:hidden;}
+    .team-photo img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+    .team-card:hover .team-photo img{transform:scale(1.06);}
+    .badge-role{position:absolute;left:14px;top:14px;background:var(--secondary-color);color:var(--primary-color);padding:6px 10px;border-radius:999px;font-weight:700;font-size:.8rem;}
+    .team-content{padding:18px 18px 16px;}
+    .team-name{margin-bottom:2px;}
+    .team-meta{font-size:.9rem;color:var(--text-light);margin-bottom:8px;}
+    .team-actions{display:flex;align-items:center;justify-content:space-between;margin-top:6px;}
+    .social a{display:inline-flex;width:36px;height:36px;border-radius:50%;align-items:center;justify-content:center;background:rgba(26,35,126,.08);color:var(--primary-color);margin-right:6px;}
+    .social a:hover{background:var(--primary-color);color:#fff;}
+
+    /* Filters */
+    .filter-chip{border:1px solid rgba(26,35,126,.2);color:var(--primary-color);background:#fff;border-radius:999px;padding:8px 14px;margin:4px;cursor:pointer;transition:.2s;}
+    .filter-chip.active, .filter-chip:hover{background:rgba(26,35,126,.08);}
+
+    /* Gallery */
+    .life-card{background:#fff;border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,.08);overflow:hidden;height:100%;}
+    .life-card img{width:100%;height:170px;object-fit:cover;}
+    .life-card .p-3{font-size:.95rem;}
+
+    /* Footer */
+    .footer{background:var(--dark-color);color:#fff;padding:80px 0 20px;position:relative;}
+    .footer::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:repeating-linear-gradient(90deg,var(--secondary-color),var(--secondary-color) 10px,var(--accent-color) 10px,var(--accent-color) 20px);}
+    .footer-logo{font-family:'Dancing Script',cursive;font-size:2rem;color:var(--secondary-color);margin-bottom:20px;display:block;}
+    .footer-links h4{color:#fff;margin-bottom:25px;position:relative;padding-bottom:10px;}
+    .footer-links h4::after{content:"";position:absolute;bottom:0;left:0;width:50px;height:2px;background:var(--secondary-color);}
+    .footer-links ul{list-style:none;padding:0;margin:0;}
+    .footer-links a{color:rgba(255,255,255,.7);text-decoration:none;transition:all .2s ease;}
+    .footer-links a:hover{color:var(--secondary-color);padding-left:4px;}
+    .payment-methods img{margin-right:10px;height:30px;filter:brightness(0) invert(1);opacity:.7;margin-bottom:10px;}
+    .copyright{background:rgba(0,0,0,.2);padding:20px 0;margin-top:40px;text-align:center;color:rgba(255,255,255,.6);font-size:.9rem;}
+
+    /* Animations */
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    .animate-fade-in-up{opacity:0;transform:translateY(30px)}
+    .animate-fade-in-up.animated{animation:fadeInUp .8s ease-out forwards}
+
+    @media(max-width:991.98px){.hero{margin-top:80px}}
+    @media(max-width:767.98px){.hero{min-height:34vh}.hero h1{font-size:2rem}}
+  </style>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Bhawani Traders",
+    "url":"https://example.com",
+    "employee":[
+      {"@type":"Person","name":"Rajesh Sharma","jobTitle":"Founder & MD"},
+      {"@type":"Person","name":"Anita Verma","jobTitle":"Head of Operations"},
+      {"@type":"Person","name":"Imran Khan","jobTitle":"Artisan Relations Lead"}
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <!-- Loader -->
+  <div class="page-loader"><div class="loader"></div></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light py-3">
+        <a class="navbar-brand" href="index.html"><span class="display-font">Bhawani</span> Traders</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav"><span class="navbar-toggler-icon"></span></button>
+
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">Categories</a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="categories.html">All Categories</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="groceries.html">Groceries</a>
+                <a class="dropdown-item" href="household.html">Household</a>
+                <a class="dropdown-item" href="personal-care.html">Personal Care</a>
+                <a class="dropdown-item" href="kitchenware.html">Kitchenware</a>
+                <a class="dropdown-item" href="textiles.html">Textiles</a>
+                <a class="dropdown-item" href="handicrafts.html">Handicrafts</a>
+                <a class="dropdown-item" href="spices.html">Spices</a>
+              </div>
+            </li>
+
+            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+            <li class="nav-item active"><a class="nav-link" href="team.html">Team</a></li>
+            <li class="nav-item"><a class="nav-link" href="artisans.html">Artisans</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          </ul>
+
+          <form class="form-inline my-2 my-lg-0 mx-auto" action="search.html">
+            <div class="input-group">
+              <input class="form-control search-box" type="search" placeholder="Search products..." name="q"/>
+              <div class="input-group-append"><button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button></div>
+            </div>
+          </form>
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" href="account.html"><i class="far fa-user"></i></a></li>
+            <li class="nav-item"><a class="nav-link" href="wishlist.html"><i class="far fa-heart"></i></a></li>
+            <li class="nav-item cart-icon"><a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i><span class="cart-count">3</span></a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero text-center d-flex">
+    <div class="container">
+      <h1 class="mb-3 animate-fade-in-up">Meet Our Team</h1>
+      <p class="lead animate-fade-in-up" style="animation-delay:.12s">Craft lovers. Community builders. Retail pros. The people behind Bhawani Traders.</p>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb-wrap">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Team</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <section class="section pt-4">
+    <div class="container">
+      <div class="section-title">
+        <h2>Departments</h2>
+        <p>Filter by function</p>
+      </div>
+      <div class="d-flex flex-wrap justify-content-center mb-4">
+        <button class="filter-chip active" data-filter="all">All</button>
+        <button class="filter-chip" data-filter="leadership">Leadership</button>
+        <button class="filter-chip" data-filter="operations">Operations</button>
+        <button class="filter-chip" data-filter="artisan-relations">Artisan Relations</button>
+        <button class="filter-chip" data-filter="customer-care">Customer Care</button>
+        <button class="filter-chip" data-filter="marketing">Marketing</button>
+      </div>
+
+      <!-- Team Grid -->
+      <div class="row" id="teamGrid">
+        <!-- Member -->
+        <div class="col-lg-4 col-md-6 mb-4 team-item" data-dept="leadership">
+          <div class="team-card animate-fade-in-up">
+            <div class="team-photo">
+              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop" alt="Rajesh Sharma"/>
+              <span class="badge-role">Founder & MD</span>
+            </div>
+            <div class="team-content">
+              <h5 class="team-name">Rajesh Sharma</h5>
+              <div class="team-meta">Jaipur • Since 1985</div>
+              <p class="mb-2">Built Bhawani Traders from a bustling bazaar counter to a statewide brand, one customer at a time.</p>
+              <div class="team-actions">
+                <div class="social">
+                  <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                  <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                </div>
+                <button class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#mRajesh">View Profile</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Member -->
+        <div class="col-lg-4 col-md-6 mb-4 team-item" data-dept="operations">
+          <div class="team-card animate-fade-in-up" style="animation-delay:.06s">
+            <div class="team-photo">
+              <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?q=80&w=1200&auto=format&fit=crop" alt="Anita Verma"/>
+              <span class="badge-role">Head of Operations</span>
+            </div>
+            <div class="team-content">
+              <h5 class="team-name">Anita Verma</h5>
+              <div class="team-meta">Inventory • Logistics</div>
+              <p class="mb-2">Optimizes supply chains from Jodhpur spices to Bikaner textiles for on-time deliveries.</p>
+              <div class="team-actions">
+                <div class="social">
+                  <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                  <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+                <button class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#mAnita">View Profile</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Member -->
+        <div class="col-lg-4 col-md-6 mb-4 team-item" data-dept="artisan-relations">
+          <div class="team-card animate-fade-in-up" style="animation-delay:.12s">
+            <div class="team-photo">
+              <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=1200&auto=format&fit=crop" alt="Imran Khan"/>
+              <span class="badge-role">Artisan Relations Lead</span>
+            </div>
+            <div class="team-content">
+              <h5 class="team-name">Imran Khan</h5>
+              <div class="team-meta">Craft Clusters • Fair Trade</div>
+              <p class="mb-2">Partners with block printers, blue-pottery makers and jutti karigars across Rajasthan.</p>
+              <div class="team-actions">
+                <div class="social">
+                  <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                  <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                </div>
+                <button class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#mImran">View Profile</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Member -->
+        <div class="col-lg-4 col-md-6 mb-4 team-item" data-dept="customer-care">
+          <div class="team-card animate-fade-in-up">
+            <div class="team-photo">
+              <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=1200&auto=format&fit=crop" alt="Priya Sharma"/>
+              <span class="badge-role">Customer Care Lead</span>
+            </div>
+            <div class="team-content">
+              <h5 class="team-name">Priya Sharma</h5>
+              <div class="team-meta">Support • Returns</div>
+              <p class="mb-2">Ensures every query is answered and every return is effortless.</p>
+              <div class="team-actions">
+                <div class="social">
+                  <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                  <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+                <button class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#mPriya">View Profile</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Member -->
+        <div class="col-lg-4 col-md-6 mb-4 team-item" data-dept="marketing">
+          <div class="team-card animate-fade-in-up" style="animation-delay:.06s">
+            <div class="team-photo">
+              <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=1200&auto=format&fit=crop" alt="Vikram Patel"/>
+              <span class="badge-role">Marketing Manager</span>
+            </div>
+            <div class="team-content">
+              <h5 class="team-name">Vikram Patel</h5>
+              <div class="team-meta">Campaigns • Community</div>
+              <p class="mb-2">Tells authentic stories of craftspeople and customers across Rajasthan.</p>
+              <div class="team-actions">
+                <div class="social">
+                  <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                  <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                </div>
+                <button class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#mVikram">View Profile</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Member -->
+        <div class="col-lg-4 col-md-6 mb-4 team-item" data-dept="operations">
+          <div class="team-card animate-fade-in-up" style="animation-delay:.12s">
+            <div class="team-photo">
+              <img src="https://images.unsplash.com/photo-1521917441209-e886f0404a7b?q=80&w=1200&auto=format&fit=crop" alt="Neha Gupta"/>
+              <span class="badge-role">Warehouse Supervisor</span>
+            </div>
+            <div class="team-content">
+              <h5 class="team-name">Neha Gupta</h5>
+              <div class="team-meta">Fulfilment • Quality</div>
+              <p class="mb-2">Keeps every parcel perfect — from packaging to handover.</p>
+              <div class="team-actions">
+                <div class="social">
+                  <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <button class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#mNeha">View Profile</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="text-center">
+        <a href="artisans.html" class="btn btn-primary btn-lg">Meet Our Artisans</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Life at Bhawani -->
+  <section class="section pt-0">
+    <div class="container">
+      <div class="section-title">
+        <h2>Life at Bhawani</h2>
+        <p>Snapshots from our world</p>
+      </div>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="life-card animate-fade-in-up">
+            <img src="https://images.unsplash.com/photo-1548943487-a2e4e43b4853?q=80&w=1200&auto=format&fit=crop" alt="Block printing visit"/>
+            <div class="p-3">Field visit to Sanganer block-printing cluster to co-design new patterns.</div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="life-card animate-fade-in-up" style="animation-delay:.06s">
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" alt="Warehouse training"/>
+            <div class="p-3">Weekly QC workshop — keeping packaging eco-friendly and sturdy.</div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="life-card animate-fade-in-up" style="animation-delay:.12s">
+            <img src="https://images.unsplash.com/photo-1521737604893-ff03e3d7a6cf?q=80&w=1200&auto=format&fit=crop" alt="Team huddle"/>
+            <div class="p-3">Monday huddle — goals, chai, and customer love stories.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Join Us -->
+  <section class="section pt-0">
+    <div class="container">
+      <div class="section-title">
+        <h2>Join Our Team</h2>
+        <p>Work that celebrates craft and community</p>
+      </div>
+      <div id="jobs" class="accordion animate-fade-in-up">
+        <div class="card">
+          <div class="card-header" id="j1">
+            <h2 class="mb-0">
+              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#r1" aria-expanded="true" aria-controls="r1">
+                Store Associate — Jaipur (Full-time)
+              </button>
+            </h2>
+          </div>
+          <div id="r1" class="collapse show" aria-labelledby="j1" data-parent="#jobs">
+            <div class="card-body">
+              Assist customers, manage billing & inventory, ensure delightful in-store experience.
+              <div class="mt-2">
+                <a href="mailto:info@bhawanitraders.com?subject=Application:%20Store%20Associate&body=Hi%20Bhawani%20Traders%2C%0A%0AI'm%20interested%20in%20the%20Store%20Associate%20role...%0A" class="btn btn-primary btn-sm"><i class="fa-solid fa-envelope mr-1"></i> Apply via Email</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="j2">
+            <h2 class="mb-0">
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#r2" aria-expanded="false" aria-controls="r2">
+                Artisan Liaison — Jodhpur/Jaisalmer (Contract)
+              </button>
+            </h2>
+          </div>
+          <div id="r2" class="collapse" aria-labelledby="j2" data-parent="#jobs">
+            <div class="card-body">
+              Coordinate with craft clusters, schedule visits, ensure fair-trade compliance and quality.
+              <div class="mt-2">
+                <a href="mailto:info@bhawanitraders.com?subject=Application:%20Artisan%20Liaison&body=Hi%20Bhawani%20Traders%2C%0A%0AI'm%20interested%20in%20the%20Artisan%20Liaison%20role...%0A" class="btn btn-primary btn-sm"><i class="fa-solid fa-envelope mr-1"></i> Apply via Email</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="small text-muted mt-3 text-center">Tip: Attach your CV as PDF and include links to relevant work.</p>
+    </div>
+  </section>
+
+  <!-- Modals -->
+  <div class="modal fade" id="mRajesh" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Rajesh Sharma — Founder & MD</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <p>Started Bhawani Traders in 1985 at Johari Bazar. Rajesh believes in fair pricing, genuine products, and old-school service with a smile.</p>
+        <p>Favorite product category: <strong>Blue Pottery</strong>. Weekend ritual: sourcing trips across Rajasthan.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="modal fade" id="mAnita" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Anita Verma — Head of Operations</h5>
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <p>From procurement to delivery SLAs, Anita orchestrates it all. She’s the force behind our reliable, on-time shipments.</p>
+        <p>Toolbox: dashboards, checklists, and chai.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="modal fade" id="mImran" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Imran Khan — Artisan Relations Lead</h5>
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <p>Works closely with artisan cooperatives ensuring fair trade and quality. Leads design collaborations for exclusive collections.</p>
+        <p>Clusters: Sanganer, Bagru, Pokhran, Bikaner.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="modal fade" id="mPriya" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Priya Sharma — Customer Care Lead</h5>
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <p>Heads the team answering queries, coordinating returns, and turning first-time buyers into regulars.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="modal fade" id="mVikram" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Vikram Patel — Marketing Manager</h5>
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <p>Crafts data-driven campaigns and community programs to celebrate Rajasthan’s heritage.</p>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="modal fade" id="mNeha" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Neha Gupta — Warehouse Supervisor</h5>
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <p>Leads a passionate fulfilment crew. Motto: “Right product, right box, right time.”</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer" id="contact-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
+          <a href="index.html" class="footer-logo">Bhawani Traders</a>
+          <div class="footer-about">
+            <p>Your one-stop destination for authentic Rajasthani products and daily essentials. Serving the people of Rajasthan since 1985 with quality and integrity.</p>
+          </div>
+          <div class="d-flex">
+            <a class="mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
+            <a class="mr-2" href="#"><i class="fab fa-instagram"></i></a>
+            <a class="mr-2" href="#"><i class="fab fa-twitter"></i></a>
+            <a class="mr-2" href="#"><i class="fab fa-pinterest-p"></i></a>
+            <a class="mr-2" href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-sm-6 mb-5 mb-lg-0">
+          <div class="footer-links">
+            <h4>Shop</h4>
+            <ul>
+              <li><a href="products.html">All Products</a></li>
+              <li><a href="groceries.html">Groceries</a></li>
+              <li><a href="household.html">Household</a></li>
+              <li><a href="personal-care.html">Personal Care</a></li>
+              <li><a href="kitchenware.html">Kitchenware</a></li>
+              <li><a href="textiles.html">Textiles</a></li>
+              <li><a href="handicrafts.html">Handicrafts</a></li>
+              <li><a href="spices.html">Spices</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-sm-6 mb-5 mb-sm-0">
+          <div class="footer-links">
+            <h4>Help</h4>
+            <ul>
+              <li><a href="faq.html">FAQs</a></li>
+              <li><a href="shipping.html">Shipping</a></li>
+              <li><a href="returns.html">Returns</a></li>
+              <li><a href="order-status.html">Order Status</a></li>
+              <li><a href="payment.html">Payment Options</a></li>
+              <li><a href="privacy.html">Privacy Policy</a></li>
+              <li><a href="terms.html">Terms &amp; Conditions</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-12">
+          <div class="footer-contact">
+            <h4>Contact Us</h4>
+            <p><i class="fas fa-map-marker-alt"></i> 123, Johari Bazar, Jaipur, Rajasthan 302001</p>
+            <p><i class="fas fa-phone-alt"></i> +91 141 256 7890</p>
+            <p><i class="fas fa-envelope"></i> info@bhawanitraders.com</p>
+            <p><i class="fas fa-clock"></i> Mon–Sat: 9:00 AM – 8:00 PM</p>
+          </div>
+          <div class="payment-methods">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/visa.svg" alt="Visa"/>
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/mastercard.svg" alt="Mastercard"/>
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/paypal.svg" alt="PayPal"/>
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/americanexpress.svg" alt="American Express"/>
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/razorpay.svg" alt="Razorpay"/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6 text-center text-md-left">
+            <p>&copy; 2025 Bhawani Traders. All rights reserved.</p>
+          </div>
+          <div class="col-md-6 text-center text-md-right">
+            <p>Designed with <i class="fas fa-heart text-danger"></i> in Rajasthan</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <a href="#" class="back-to-top btn btn-primary btn-rounded shadow" style="position: fixed; bottom: 20px; right: 20px; display: none;">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    // Loader
+    $(window).on('load', function(){ setTimeout(()=>$('.page-loader').addClass('hidden'), 600); });
+
+    // Back to top
+    $(window).scroll(function(){ if($(this).scrollTop()>300) $('.back-to-top').fadeIn('slow'); else $('.back-to-top').fadeOut('slow'); });
+    $('.back-to-top').click(function(e){ e.preventDefault(); $('html, body').animate({scrollTop:0}, 900); });
+
+    // Animate on scroll
+    function animateOnScroll(){
+      $('.animate-fade-in-up').each(function(){
+        var elTop = $(this).offset().top;
+        var inView = $(window).scrollTop()+$(window).height() > elTop + 100;
+        if(inView) $(this).addClass('animated');
+      });
+    }
+    animateOnScroll(); $(window).on('scroll', animateOnScroll);
+
+    // Department filters (client-side)
+    $('.filter-chip').on('click', function(){
+      $('.filter-chip').removeClass('active'); $(this).addClass('active');
+      const filter = $(this).data('filter');
+      if(filter === 'all'){ $('.team-item').show(); return; }
+      $('.team-item').hide().filter(function(){ return $(this).data('dept') === filter; }).fadeIn(150);
+    });
+  </script>
+</body>
+</html>
